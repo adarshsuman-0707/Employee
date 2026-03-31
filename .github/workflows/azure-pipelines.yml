@@ -22,7 +22,7 @@ jobs:
       - name: Run Auto Test Script
         shell: powershell
         run: |
-          Write-Host "🔍 Searching for solution file..."
+          Write-Host "Searching for solution file..."
           $sln = Get-ChildItem -Recurse -Filter *.sln | Select-Object -First 1
 
           if (-not $sln) {
