@@ -28,10 +28,10 @@ jobs:
         run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
       - name: Show Project Files
         run: Get-ChildItem -Recurse -Filter *.csproj
-   deploy:
-     runs-on: self-hosted
-     needs: publish
-     steps:
+  deploy:
+    runs-on: self-hosted
+    needs: publish
+    steps:
       - name: Stop App Pool
         run: |
           Import-Module WebAdministration
