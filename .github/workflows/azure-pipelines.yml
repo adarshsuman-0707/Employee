@@ -6,12 +6,9 @@ on:
       - master
 
 jobs:
-  build:
-    runs-on: self-hosted   # 🔥 THIS IS THE KEY FIX
 
-    env:
-      BUILD_CONFIGURATION: Release
-      PUBLISH_DIR: C:\publish-temp   # better than workspace
+  build:
+    runs-on: self-hosted
 
     steps:
       - name: Checkout Code
@@ -21,20 +18,50 @@ jobs:
         run: dotnet restore
 
       - name: Build Project
-        run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+        run: dotnet build --configuration Release --no-restore
+
+
+  publish:
+    runs-on: self-hosted
+    needs: build
+
+    environment: production
+
+    env:
+      BUILD_CONFIGURATION: Release
+      PUBLISH_DIR: C:\publish-temp
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Show Project Files
         run: Get-ChildItem -Recurse -Filter *.csproj
+
+
+  deploy:
+    runs-on: self-hosted
+    needs: publish
+
+    env:
+      BUILD_CONFIGURATION: Release
+      PUBLISH_DIR: C:\publish-temp
+
+    steps:
       - name: Stop App Pool
         run: |
           Import-Module WebAdministration
           Stop-WebAppPool -Name "DefaultAppPool"
+
       - name: Publish Project
         run: |
           $proj = Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 1
           dotnet publish $proj.FullName -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} --no-build
+
       - name: Start App Pool
         run: |
           Import-Module WebAdministration
           Start-WebAppPool -Name "DefaultAppPool"
+
       - name: Restart IIS
         run: iisreset
