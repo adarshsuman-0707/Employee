@@ -30,54 +30,6 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Employee/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcRW1wbG95ZWVcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Employee/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcRW1wbG95ZWVcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Employee/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcRW1wbG95ZWVcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Employee/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Login/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcTG9naW5cSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Practice/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcUHJhY3RpY2VcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [F:/dotnet/EmployeeManagement/Views/Employee/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -125,10 +77,6 @@ build_metadata.AdditionalFiles.CssScope =
 [F:/dotnet/EmployeeManagement/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
-
-[F:/dotnet/EmployeeManagement/actions-runner/_work/Employee/Employee/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = YWN0aW9ucy1ydW5uZXJcX3dvcmtcRW1wbG95ZWVcRW1wbG95ZWVcVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-v613mkiszh
 
 [F:/dotnet/EmployeeManagement/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
