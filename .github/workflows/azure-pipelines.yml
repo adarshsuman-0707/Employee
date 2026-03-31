@@ -1,49 +1,32 @@
-name: .NET Build Pipeline
-
-on:
-  push:
-    branches:
-      - master
-
 jobs:
   build:
-    runs-on: windows-latest   # use windows for IIS compatibility
+    runs-on: self-hosted   # 🔥 THIS IS THE KEY FIX
 
     env:
       BUILD_CONFIGURATION: Release
-      PUBLISH_DIR: ${{ github.workspace }}\publish
+      PUBLISH_DIR: C:\publish-temp   # better than workspace
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Setup .NET
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
-      # Restore
       - name: Restore Packages
         run: dotnet restore
 
-      # Build
       - name: Build Project
         run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
 
-      # Publish
       - name: Publish Project
-        run: dotnet publish -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} --no-build
+        run: dotnet publish EmployeeManagement/EmployeeManagement.csproj -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} --no-build
+
       - name: Copy to IIS Folder
         run: |
           xcopy /E /I /Y "${{ env.PUBLISH_DIR }}\*" "C:\inetpub\EmployeeApp\"
 
       - name: Restart IIS
         run: iisreset
-
-      # Upload artifact (important replacement for Azure DevOps artifact staging)
-      - name: Upload Publish Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: published-app
-          path: ${{ env.PUBLISH_DIR }}
