@@ -1,0 +1,41 @@
+trigger:
+- main
+
+pool:
+  name: 'Default'   # your self-hosted agent pool
+
+variables:
+  buildConfiguration: 'Release'
+  publishDir: '$(Build.ArtifactStagingDirectory)/publish'
+
+steps:
+
+# Restore
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'   # change if using .NET 6/7
+
+- script: dotnet restore
+  displayName: 'Restore Packages'
+
+# Build
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'Build Project'
+
+# Publish
+- script: dotnet publish -c $(buildConfiguration) -o $(publishDir)
+  displayName: 'Publish Project'
+
+# Copy to IIS Folder (DEPLOY STEP)
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(publishDir)'
+    Contents: '**'
+    TargetFolder: 'D:\inetpub\EmployeeApp'
+    OverWrite: true
+
+# Restart IIS (VERY IMPORTANT)
+- script: |
+    iisreset
+  displayName: 'Restart IIS'

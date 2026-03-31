@@ -1,0 +1,110 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<h1>Create Employee</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Department" class="control-label"></label>
+                <input asp-for="Department" class="form-control" />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Designation" class="control-label"></label>
+                <input asp-for="Designation" class="form-control" />
+                <span asp-validation-for="Designation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Salary" class="control-label"></label>
+                <input asp-for="Salary" class="form-control" />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+
+            <input type="text" id="searchLocation" class="form-control" placeholder="Search Location" />
+            <ul id="suggestions" class="list-group mt-2" style="position:absolute; z-index:1000;"></ul>
+
+            <div class="form-group mb-3">
+            <input asp-for="Address" id="Address"  class="form-control mt-3" placeholder="Address" />
+            <input asp-for="City" id="City"  class="form-control mt-3" placeholder="City" />
+            </div>
+
+
+
+            <div class="form-group mb-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+    <script>
+        document.getElementById('searchLocation').addEventListener('input', async function () {
+          const query = this.value;
+          if (query.length < 3) return;
+
+          const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`);
+          const data = await res.json();
+
+          const suggestions = document.getElementById('suggestions');
+          suggestions.innerHTML = "";
+
+          data.slice(0, 5).forEach(item => {
+            const li = document.createElement('li');
+            li.classList.add('list-group-item');
+            li.textContent = item.display_name;
+            li.addEventListener('click', () => {
+              document.getElementById('searchLocation').value = item.display_name;
+
+              const parts = item.display_name.split(',');
+              const cityIndex = parts.findIndex(p =>
+                p.trim().toLowerCase() === 'bhopal' ||
+                p.trim().toLowerCase().includes('भोपाल')
+              );
+
+              const city = cityIndex !== -1 ? parts[cityIndex].trim() : parts[parts.length - 3]?.trim();
+              const address = cityIndex !== -1 ? parts.slice(0, cityIndex).join(',').trim() : parts.slice(0, -3).join(',').trim();
+
+              document.getElementById('Address').value = address;
+              document.getElementById('City').value = city;
+
+              suggestions.innerHTML = "";
+            });
+            suggestions.appendChild(li);
+          });
+        });
+    </script>
+
+    
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgjGQaOJe8d3dvKaSdAeyC_25URkN6puI&libraries=places&callback=initAutocomplete" async defer></script>
+}
