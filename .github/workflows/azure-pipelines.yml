@@ -22,8 +22,8 @@ jobs:
 
       - name: Build Project
         run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
-      - name: Show Folder Structure
-        run: dir /s *.csproj
+      - name: Show Project Files
+       run: Get-ChildItem -Recurse -Filter *.csproj
       - name: Publish Project
         run: |
           $proj = Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 1
