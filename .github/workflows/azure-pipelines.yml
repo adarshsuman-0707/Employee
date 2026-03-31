@@ -24,10 +24,17 @@ jobs:
         run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
       - name: Show Project Files
         run: Get-ChildItem -Recurse -Filter *.csproj
+      - name: Stop App Pool
+        run: |
+          Import-Module WebAdministration
+          Stop-WebAppPool -Name "DefaultAppPool"
       - name: Publish Project
         run: |
           $proj = Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 1
           dotnet publish $proj.FullName -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} --no-build
-
+      - name: Start App Pool
+        run: |
+          Import-Module WebAdministration
+          Start-WebAppPool -Name "DefaultAppPool"
       - name: Restart IIS
         run: iisreset
