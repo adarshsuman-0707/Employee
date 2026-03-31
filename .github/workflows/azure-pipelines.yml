@@ -56,7 +56,10 @@ jobs:
       - name: Publish Project
         run: |
           $proj = Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 1
-          dotnet publish $proj.FullName -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} --no-build
+          dotnet publish $proj.FullName -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} 
+      - name: Clean IIS Folder
+        run: |
+          Remove-Item "C:\inetpub\EmployeeApp\*" -Recurse -Force
       - name: Copy Files to IIS   # 🔥 MISSING STEP
         run: |
           xcopy /E /I /Y "C:\publish-temp\*" "C:\inetpub\EmployeeApp\"
