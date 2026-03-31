@@ -1,41 +1,43 @@
-trigger:
-- main
+name: .NET Build Pipeline
 
-pool:
-  name: 'Default'   # your self-hosted agent pool
+on:
+  push:
+    branches:
+      - main
 
-variables:
-  buildConfiguration: 'Release'
-  publishDir: '$(Build.ArtifactStagingDirectory)/publish'
+jobs:
+  build:
+    runs-on: windows-latest   # use windows for IIS compatibility
 
-steps:
+    env:
+      BUILD_CONFIGURATION: Release
+      PUBLISH_DIR: ${{ github.workspace }}\publish
 
-# Restore
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '8.x'   # change if using .NET 6/7
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-- script: dotnet restore
-  displayName: 'Restore Packages'
+      # Setup .NET
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
-# Build
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'Build Project'
+      # Restore
+      - name: Restore Packages
+        run: dotnet restore
 
-# Publish
-- script: dotnet publish -c $(buildConfiguration) -o $(publishDir)
-  displayName: 'Publish Project'
+      # Build
+      - name: Build Project
+        run: dotnet build --configuration $BUILD_CONFIGURATION --no-restore
 
-# Copy to IIS Folder (DEPLOY STEP)
-# - task: CopyFiles@2
-#   inputs:
-#     SourceFolder: '$(publishDir)'
-#     Contents: '**'
-#     TargetFolder: 'D:\inetpub\EmployeeApp'
-#     OverWrite: true
+      # Publish
+      - name: Publish Project
+        run: dotnet publish -c $BUILD_CONFIGURATION -o $PUBLISH_DIR --no-build
 
-# # Restart IIS (VERY IMPORTANT)
-# - script: |
-#     iisreset
-#   displayName: 'Restart IIS'
+      # Upload artifact (important replacement for Azure DevOps artifact staging)
+      - name: Upload Publish Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-app
+          path: ${{ env.PUBLISH_DIR }}
