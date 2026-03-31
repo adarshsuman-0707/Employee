@@ -256,3 +256,4 @@ F:\dotnet\EmployeeManagement\obj\Debug\net8.0\ref\EmployeeManagement.dll
 F:\dotnet\EmployeeManagement\obj\Debug\net8.0\swae.build.ex.cache
 F:\dotnet\EmployeeManagement\bin\Debug\net8.0\dotnet-tools.json
 F:\dotnet\EmployeeManagement\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+F:\dotnet\EmployeeManagement\obj\Debug\net8.0\EmployeeManagement.sourcelink.json
