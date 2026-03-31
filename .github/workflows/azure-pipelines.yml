@@ -22,9 +22,12 @@ jobs:
 
       - name: Build Project
         run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
-
+      - name: Show Folder Structure
+        run: dir /s *.csproj
       - name: Publish Project
-        run: dotnet publish **/*.csproj -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} --no-build
+        run: |
+          $proj = Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 1
+          dotnet publish $proj.FullName -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} --no-build
 
       - name: Copy to IIS Folder
         run: |
