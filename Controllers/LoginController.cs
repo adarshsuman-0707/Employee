@@ -15,7 +15,7 @@ namespace EmployeeManagement.Controllers
         public IActionResult Index(Login model)
         {
        
-            if (model.Username == "admin" && model.Password == "1234567890")
+            if (model.Username == "admin" && model.Password == "1234567890123")
             {
                 HttpContext.Session.SetString("Username", model.Username);
                 return RedirectToAction("Index", "Employee");
