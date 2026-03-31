@@ -24,7 +24,7 @@ jobs:
         run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
 
       - name: Publish Project
-        run: dotnet publish EmployeeManagement/EmployeeManagement.csproj -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} --no-build
+        run: dotnet publish **/*.csproj -c ${{ env.BUILD_CONFIGURATION }} -o ${{ env.PUBLISH_DIR }} --no-build
 
       - name: Copy to IIS Folder
         run: |
