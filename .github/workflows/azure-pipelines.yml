@@ -23,7 +23,7 @@ jobs:
       - name: Build Project
         run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
       - name: Show Project Files
-       run: Get-ChildItem -Recurse -Filter *.csproj
+        run: Get-ChildItem -Recurse -Filter *.csproj
       - name: Publish Project
         run: |
           $proj = Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 1
