@@ -28,14 +28,14 @@ steps:
   displayName: 'Publish Project'
 
 # Copy to IIS Folder (DEPLOY STEP)
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(publishDir)'
-    Contents: '**'
-    TargetFolder: 'D:\inetpub\EmployeeApp'
-    OverWrite: true
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: '$(publishDir)'
+#     Contents: '**'
+#     TargetFolder: 'D:\inetpub\EmployeeApp'
+#     OverWrite: true
 
-# Restart IIS (VERY IMPORTANT)
-- script: |
-    iisreset
-  displayName: 'Restart IIS'
+# # Restart IIS (VERY IMPORTANT)
+# - script: |
+#     iisreset
+#   displayName: 'Restart IIS'

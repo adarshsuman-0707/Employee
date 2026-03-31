@@ -3,7 +3,7 @@ using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagement.Controllers
-{//Hello
+{//Hello how are you working in this repository 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
