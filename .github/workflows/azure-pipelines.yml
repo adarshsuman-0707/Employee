@@ -1,3 +1,10 @@
+name: .NET Build Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   build:
     runs-on: self-hosted   # 🔥 THIS IS THE KEY FIX
