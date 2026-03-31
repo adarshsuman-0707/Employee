@@ -19,7 +19,46 @@ jobs:
 
       - name: Build Project
         run: dotnet build --configuration Release --no-restore
+      - name: Run Auto Test Script
+        shell: powershell
+        run: |
+          Write-Host "🔍 Searching for solution file..."
+          $sln = Get-ChildItem -Recurse -Filter *.sln | Select-Object -First 1
 
+          if (-not $sln) {
+              Write-Host "❌ No solution file found"
+              exit 1
+          }
+
+          Write-Host "📦 Restoring..."
+          dotnet restore $sln.FullName
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+
+          Write-Host "🔨 Building..."
+          dotnet build $sln.FullName --configuration Release --no-restore
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+
+          Write-Host "🧪 Searching test projects..."
+          $tests = Get-ChildItem -Recurse -Filter *.csproj | Where-Object {
+              $_.Name -like "*Test*" -or $_.Name -like "*Tests*"
+          }
+
+          if ($tests.Count -eq 0) {
+              Write-Host "⚠️ No test projects found"
+              exit 0
+          }
+
+          foreach ($test in $tests) {
+              Write-Host "Running tests: $($test.Name)"
+              dotnet test $test.FullName --configuration Release --no-build --verbosity normal
+
+              if ($LASTEXITCODE -ne 0) {
+                  Write-Host "❌ Test Failed"
+                  exit 1
+              }
+          }
+
+          Write-Host "✅ All tests passed"
 
   publish:
     runs-on: self-hosted
