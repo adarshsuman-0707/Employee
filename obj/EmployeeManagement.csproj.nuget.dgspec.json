@@ -64,6 +64,14 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "xunit.assert": {
+              "target": "Package",
+              "version": "[2.9.3, )"
+            },
+            "xunit.extensibility.core": {
+              "target": "Package",
+              "version": "[2.9.3, )"
             }
           },
           "imports": [
